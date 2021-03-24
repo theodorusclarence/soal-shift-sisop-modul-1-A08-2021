@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# cara separate tabs
-# awk -F$'\t' '{print $1}'
-
 # Row ID dan profit percentage terbesar (jika hasil profit percentage terbesar lebih dari 1, maka ambil Row ID yang paling besar)
 awk -F"\t" '
 BEGIN {max=0;rid=0;}
 {sales=$18;profit=$21;rid=$2;
+
+    if (NR == 1) next 
+
 	costprice=sales-profit;
     if (costprice != 0)
     {
@@ -18,7 +18,7 @@ BEGIN {max=0;rid=0;}
     }
 }
 END {
-    printf("Transaksi terakhir dengan profit percentage terbesar yaitu %s dengan persentase %s.\n", maxidx,max)
+    printf("Transaksi terakhir dengan profit percentage terbesar yaitu %s dengan persentase %f.\n", maxidx,max)
 }' Laporan-TokoShiSop.tsv
 
 echo
@@ -27,11 +27,17 @@ echo
 awk -F"\t" '
 BEGIN {print "Daftar nama customer di Albuquerque pada tahun 2017 antara lain:"}
 {city=$10;trx=$3;name=$7
+    if (NR == 1) next 
+
     last2trxdate=substr(trx,length(trx)-1,2)
     if (city == "Albuquerque" && last2trxdate == "17")
-        print name
+        arr[name]="ga penting isinya"
 }
-END {}' Laporan-TokoShiSop.tsv
+END {
+    for (key in arr) {
+        print key
+    }
+}' Laporan-TokoShiSop.tsv
 
 echo
 
@@ -57,12 +63,13 @@ echo
 
 awk -F"\t"  '
 BEGIN {}
-{profit=$12;region=$13;
+{profit=$21;region=$13;
     if (NR == 1) next 
 
-    count[region] = count[region] + $12;
+
+    count[region] = count[region] + profit;
 } 
-END {min=999999999;tipe=0;
+END {min=999999999999;tipe=0;
 for (region in count) {
     if (min > count[region]) {
             min=count[region]
@@ -70,7 +77,7 @@ for (region in count) {
         }
 }
 
-printf("Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah %s dengan total keuntungan %s", tipe, min)
+printf("Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah %s dengan total keuntungan %f", tipe, min)
 }' Laporan-TokoShiSop.tsv
 
 echo
