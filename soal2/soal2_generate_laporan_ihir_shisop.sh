@@ -50,5 +50,27 @@ for (segment in count) {
     }
 }
 
-    printf("Tipe segmen customer yang penjualannya paling sedikit adalah %s dengan %s transaksi.", tipe, min)
+    printf("Tipe segmen customer yang penjualannya paling sedikit adalah %s dengan %s transaksi.\n", tipe, min)
 }' Laporan-TokoShiSop.tsv
+
+echo
+
+awk -F"\t"  '
+BEGIN {}
+{profit=$12;region=$13;
+    if (NR == 1) next 
+
+    count[region] = count[region] + $12;
+} 
+END {min=999999999;tipe=0;
+for (region in count) {
+    if (min > count[region]) {
+            min=count[region]
+            tipe=region
+        }
+}
+
+printf("Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah %s dengan total keuntungan %s", tipe, min)
+}' Laporan-TokoShiSop.tsv
+
+echo
