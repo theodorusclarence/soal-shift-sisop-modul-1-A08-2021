@@ -19,9 +19,9 @@ BEGIN {max=0;rid=0;}
 }
 END {
     printf("Transaksi terakhir dengan profit percentage terbesar yaitu %s dengan persentase %f.\n", maxidx,max)
-}' Laporan-TokoShiSop.tsv
+}' Laporan-TokoShiSop.tsv  >> hasil.txt
 
-echo
+echo >> hasil.txt
 
 # nama customer pada transaksi tahun 2017 di Albuquerque.
 awk -F"\t" '
@@ -37,9 +37,9 @@ END {
     for (key in arr) {
         print key
     }
-}' Laporan-TokoShiSop.tsv
+}' Laporan-TokoShiSop.tsv >> hasil.txt
 
-echo
+echo >> hasil.txt
 
 awk -F"\t"  '
 BEGIN {}
@@ -57,9 +57,9 @@ for (segment in count) {
 }
 
     printf("Tipe segmen customer yang penjualannya paling sedikit adalah %s dengan %s transaksi.\n", tipe, min)
-}' Laporan-TokoShiSop.tsv
+}' Laporan-TokoShiSop.tsv >> hasil.txt
 
-echo
+echo >> hasil.txt
 
 awk -F"\t"  '
 BEGIN {}
@@ -76,8 +76,9 @@ for (region in count) {
             tipe=region
         }
 }
-
 printf("Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah %s dengan total keuntungan %f", tipe, min)
-}' Laporan-TokoShiSop.tsv
+}' Laporan-TokoShiSop.tsv >> hasil.txt
 
-echo
+
+
+echo >> hasil.txt
