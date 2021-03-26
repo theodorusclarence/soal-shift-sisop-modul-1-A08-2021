@@ -1,21 +1,20 @@
 #!/bin/bash
 
-count=1
-# a) Mengumpulkan jenis log (ERROR/INFO), pesan log, dan username
-while IFS=$' ' read -r -a myArray
-do
-# echo "${myArray[@]:5:1}"
-    for i in "${myArray[@]:5:1}";
-    do
-        if [[ "$i" -eq "ERROR"  ]];
-        then
-            echo "${myArray[@]}"
-            echo $count;
-            $((count++))
-        fi
-    done
-unset 'myArray[${#myArray[@]}-1]'
-# echo "${myArray[0]}, ${myArray[1]}, ${myArray[2]}, ${myArray[3]}, ${myArray[5]}"
-#  echo "${myArray[@]:5}"
-# echo "${myArray[${#myArray[@]}-2]}"
-done < syslog.log
+# ! Correct
+echo Error,Count >> error_message.csv
+grep -oE '(ERROR) .* ' syslog.log | sed s/"ERROR "// | sort | uniq -c | while read count text
+do 
+    echo $text,$count >> error_message.csv
+done
+# ! Correct
+
+# ! Correct
+echo Username,INFO,ERROR >> user_statistic.csv
+#* get INFO with the name, then only get string inside parentheses, sort|uniq to count occurence, then iterate
+grep -oE '.* (INFO) .* (\(.*\))' syslog.log | sed  's/.*(\(.*\))/\1/' | sort | uniq -c | while read count text
+do 
+    # di grep, pake "" supaya bisa masuk variable, last sed buat apus whitespace
+    errC=`grep -oE ".* (ERROR) .* (\($text\))" syslog.log | sed  's/.*(\(.*\))/\1/' | wc -l | sed 's/^[ \t]*//'`
+    echo $text,$count,$errC >> user_statistic.csv
+done 
+# ! Correct

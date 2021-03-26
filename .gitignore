@@ -3,3 +3,6 @@ Icon[
 Laporan-TokoShiSop.tsv
 syslog.log
 **/Icon?
+
+error_message.csv
+user_statistic.csv
