@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd `pwd`
+cd soal-shift-sisop-modul-1-A08-2021/soal3
 
 i=1
 
