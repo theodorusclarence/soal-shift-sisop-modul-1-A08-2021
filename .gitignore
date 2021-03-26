@@ -6,3 +6,5 @@ syslog.log
 
 error_message.csv
 user_statistic.csv
+
+.DS_Store
