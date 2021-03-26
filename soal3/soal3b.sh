@@ -1,47 +1,32 @@
 #!/bin/bash
 
-folderName="duplicate"
-if [ ! -d "$folderName" ]
-then
-	mkdir "$folderName"
-fi
+cd `pwd`
 
-name1="Koleksi_"
-name2="duplicate_"
-
-grep 'Location' "Foto.log" >> "location.log"
 i=1
 
+# if [ ! -d "Kucing" ]
+# then
+# 	mkdir Kucing
+# fi
+# cd Kucing
+
+# * Downloads file, but if the same file name exist, then don't
 while [ $i -lt 24 ]
 do
-	str1="$name1$i"
-	cek1=$(cat location.log | head -$i | tail -1)
-	j=1
-	p=0
-	limit=$(ls -1 | grep ^pdkt | wc -l)
-
-	while [ $p -lt $limit ] 
-	do
-		if [ $i -ne $j ]
-		then
-			if [ -f "$name1$j" ]
-			then
-			cek2=$(cat location.log | head -$j | tail -1)
-				if [ "$cek1" == "$cek2" ]
-				then
-				count=$(ls -1 ./duplicate | wc -l)
-				count=$((count + 1))
-				str2="$name2$count"
-				mv $str1 $str2
-				mv $str2 ./duplicate
-				break
-				fi
-            
-			fi
-		fi
-		j=$((j + 1))
-		p=$((p + 1))
-	done
-
+	echo `wget -nc --content-disposition https://loremflickr.com/320/240/kitten -a 'Foto.log'`
 	i=$((i + 1))
 done
+
+# * Rename .jpg files inside to incrementing name
+i=1
+find . -name "*.jpg" -print0 | while read -d $'\0' file
+do
+	mv $file Koleksi_$i.jpg
+	i=$((i + 1))
+done
+
+date="$(date +%d-%m-%Y)"
+
+mkdir $date
+mv *.jpg $date
+mv Foto.log $date

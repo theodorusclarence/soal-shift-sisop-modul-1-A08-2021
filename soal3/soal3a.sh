@@ -2,11 +2,11 @@
 
 i=1
 
-if [ ! -d "Kucing" ]
-then
-	mkdir Kucing
-fi
-cd Kucing
+# if [ ! -d "Kucing" ]
+# then
+# 	mkdir Kucing
+# fi
+# cd Kucing
 
 # * Downloads file, but if the same file name exist, then don't
 while [ $i -lt 24 ]
