@@ -70,9 +70,17 @@ Tidak ada
 ## Referensi Nomor 1
 - read and separated file https://stackoverflow.com/questions/9736202/read-tab-separated-file-line-into-array
 - split text file space delimiter https://unix.stackexchange.com/questions/410710/splitting-a-line-into-array-in-bash-with-tab-as-delimiter
+- Remove word with sed https://unix.stackexchange.com/questions/311758/remove-specific-word-in-variable
+- Custom format output uniq https://stackoverflow.com/questions/8948975/how-do-you-do-custom-formatting-with-the-uniq-c-option
+- get string inside parenthesis https://unix.stackexchange.com/questions/108250/print-the-string-between-two-parentheses
 
 ## Referensi Nomor 2
 - cek cara split tab, nomor 2 https://stackoverflow.com/questions/44394034/how-to-view-syslog-in-ubuntu
 - cari max, https://www.programmersought.com/article/4079936922/
 - cari substring buat tanggal, https://community.hpe.com/t5/Languages-and-Scripting/print-the-last-character-of-a-string-using-awk/td-p/5162994#.YFoTwmgxXOR
 - cari muncul berapa kali https://stackoverflow.com/questions/27986425/using-awk-to-count-the-number-of-occurrences-of-a-word-in-a-column
+
+## Referensi Nomor 3
+- get redirected url https://stackoverflow.com/questions/11389933/how-to-fix-wget-download-file-name-when-the-url-is-redirected
+- dont download if file exist wget https://stackoverflow.com/questions/4944295/skip-download-if-files-exist-in-wget
+- Loop through file name https://stackoverflow.com/a/9612114
