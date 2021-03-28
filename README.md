@@ -47,6 +47,7 @@ Tujuan: menampilkan jumlah kemunculan log ERROR dan INFO untuk setiap user-nya
 2. Di dalam perulangan 1c while read count name, dilakukan echo $name,$count,$errC >> user_statistic.csv untuk menuliskan nilai 'name', 'count' dan 'errC' di file user_statistic.csv
 3. Pengurutan jumlah kemunculan sudah teratasi oleh sort sebelumnya
 
+---
 ## Soal Nomor 2
 #### Source Code 2a
 ![2a](./screenshots/2a.png)
