@@ -21,7 +21,7 @@ Tujuan: menampilkan semua pesan error yang muncul beserta jumlah kemunculannya
 ### Source Code 1c
 
 #### Cara Pengerjaan
-Tujuan: menampilkan jumlah kemunculan log `ERROR` dan `INFO` untuk setiap user-nya
+Tujuan: menampilkan jumlah kemunculan log `ERROR` dan `INFO` untuk setiap usernya
 1. Melakukan grep pada `syslog.log`
 2. Menggunakan regex dengan `'.* (INFO) .* (\(.*\))'`
 3. Menggunakan tambahan `-o` untuk mencetak hanya yang eksplisit sesuai dengan kondisi yang diminta
