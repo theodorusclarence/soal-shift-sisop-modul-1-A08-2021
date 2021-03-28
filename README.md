@@ -69,7 +69,8 @@ Tidak ada
 #### Cara Pengerjaan
 1. Pada soal ini menggunakan `wget -nc` untuk dwonload file dengan mencegah terjadinya file yang duplicate sehingga mempermudah disaat pemberian label
 2. Kemudian log dari download tersebut di store ke `Foto.log`
-3. Kami menggunakan `-name "*.jpg" ! -name "Koleksi*.jpg"` pada saat loop untuk pemberian nama bertujuan untuk menemukan file foto yang sudah didownload dan mencegah mengambil foto yang sudah di format koleksi
+3. Kami menggunakan `-name "*.jpg" ` pada saat loop untuk pemberian nama bertujuan untuk menemukan file foto yang sudah didownload 
+4. Dalam pelabelan Foto kucing dilakukan dengan urut hingga foto terakhir
 #### Kendala
 1. Di awal kami kesulitan menemukan metode pengambilan foto tanpa ada duplkasi
 
@@ -78,30 +79,35 @@ Tidak ada
 ![2a](./screenshots/crontab3b.png)
 
 #### Cara Pengerjaan
-1. Soal
+1. Pada soal ini dengan prinsip yang sama dengan soal sebelumnya tetapi dengan memindahkan file yang didownload ke dalam folder dengan label tanggal saat dijalankan dengan format berikut`"$(date +%d-%m-%Y)"` dan juga memberikan jadwal menggunakan crontab
+2. untuk memindahkan file yang sudah didownload kedalam folder kami menggunakan `find . -name "*.jpg" ! -name "Koleksi*.jpg"` untuk mencari file yang berekstensi .jpg tapi tidak dengan yang sudah ada format Koleksi sehingga file yang didownload sebelumnya tidak terpindahkan ke folder baru
+
 #### Kendala
-1. 
-2. 
+1. Pada saat pemindahan foto ke folder baru, foto di folder lama ikut dalam pemindahan karena metode pencarian juga sampai subfolder sehingga dibutuhkan syarat baru
 
 #### Source Code 3c
 ![2a](./screenshots/code3c.png)
 
 #### Cara Pengerjaan
-1. 
+1. Pada soal ini kami menggunakan `$kucCount -ge $kelCount` untuk menjadi acuan dilakukan download di web url yang berbeda sehingga apabila sebelumnya sudah ada folder berisi kucing maka folder selanjutnya akan download di url kelinci. 
 #### Kendala
-1. 
-2. 
+1. Tidak ada kendala
 
 #### Source Code 3d
 ![2a](./screenshots/code3d.png)
 
 #### Cara Pengerjaan
-1. 
+1. Untuk melakukan zip tetapi dengan password yang sudah ditentukan sesuai dengan tanggal disaat mengeksekusi program menggunakan `-e -P $(date +%m%d%Y)` sehingga password akan berubah sesuai dengan tanggal saat program dieksekusi dengan label `Koleksi.zip`
+2. Kami menggunakan `rm -r */` untuk menghapus file yang sudah di kompresi ke dalam zip
+
 #### Kendala
-1. 
-2. 
+1. Di awal mengalami kesulitan untuk melakukan zip sekaligus menghapus file yang sudah dizip ataupun sebaliknya
 
-
+#### Source Code 3e
+![2a](./screenshots/crontab3e.png)
+#### Cara Pengerjaan
+1. Melakukan sesuai jadwal dan dengan memberikan branch pada saat pukul 7 dan 18 untuk melakukan zip atau melakukan unzip.
+2. Kami menggunakan `unzip -P $(date +%m%d%Y) Koleksi.zip` untuk melakukan unzip pada jam 18 dengan melutakkan branch tersebut di soal3d 
 
 ## Referensi Nomor 1
 - read and separated file https://stackoverflow.com/questions/9736202/read-tab-separated-file-line-into-array
