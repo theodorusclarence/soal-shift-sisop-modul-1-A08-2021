@@ -67,24 +67,18 @@ Tidak ada
 ![2a](./screenshots/code3a.png)
 
 #### Cara Pengerjaan
-1. 
+1. Pada soal ini menggunakan `wget -nc` untuk dwonload file dengan mencegah terjadinya file yang duplicate sehingga mempermudah disaat pemberian label
+2. Kemudian log dari download tersebut di store ke `Foto.log`
+3. Kami menggunakan `-name "*.jpg" ! -name "Koleksi*.jpg"` pada saat loop untuk pemberian nama bertujuan untuk menemukan file foto yang sudah didownload dan mencegah mengambil foto yang sudah di format koleksi
 #### Kendala
-1. 
-2. 
+1. Di awal kami kesulitan menemukan metode pengambilan foto tanpa ada duplkasi
 
 #### Source Code 3b
 ![2a](./screenshots/code3b.png)
-
-#### Cara Pengerjaan
-1. 
-#### Kendala
-1. 
-2. 
-
 ![2a](./screenshots/crontab3b.png)
 
 #### Cara Pengerjaan
-1. 
+1. Soal
 #### Kendala
 1. 
 2. 
