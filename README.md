@@ -33,7 +33,6 @@ Tujuan: menampilkan jumlah kemunculan log ERROR dan INFO untuk setiap user-nya
 9. Menggunakan sed  's/.*(\(.*\))/\1/'  untuk menghilangkan selain parenthese
 10. Dilakukan | wc -l | sed 's/^[ \t]*//'` untuk menghitung jumlah parenthese yang muncul serta menghilangkan tab di depannya
 
-
 #### Source Code 1d
 
 #### Cara Pengerjaan
@@ -108,44 +107,8 @@ Tujuan: menampilkan jumlah kemunculan log ERROR dan INFO untuk setiap user-nya
 #### Kendala
 Tidak ada
 
-## Soal Nomor 3
-#### Source Code 3a
-![2a](./screenshots/code3a.png)
 
-#### Cara Pengerjaan
-1. Pada soal ini menggunakan `wget -nc` untuk dwonload file dengan mencegah terjadinya file yang duplicate sehingga mempermudah disaat pemberian label
-2. Kemudian log dari download tersebut di store ke `Foto.log`
-3. Kami menggunakan `-name "*.jpg" ! -name "Koleksi*.jpg"` pada saat loop untuk pemberian nama bertujuan untuk menemukan file foto yang sudah didownload dan mencegah mengambil foto yang sudah di format koleksi
-#### Kendala
-1. Di awal kami kesulitan menemukan metode pengambilan foto tanpa ada duplkasi
 
-#### Source Code 3b
-![2a](./screenshots/code3b.png)
-![2a](./screenshots/crontab3b.png)
-
-#### Cara Pengerjaan
-1. Soal
-#### Kendala
-1. 
-2. 
-
-#### Source Code 3c
-![2a](./screenshots/code3c.png)
-
-#### Cara Pengerjaan
-1. 
-#### Kendala
-1. 
-2. 
-
-#### Source Code 3d
-![2a](./screenshots/code3d.png)
-
-#### Cara Pengerjaan
-1. 
-#### Kendala
-1. 
-2. 
 
 
 
