@@ -62,7 +62,15 @@
 #### Kendala
 Tidak ada
 
+## Soal Nomor 3
+#### Source Code 3a
+![2a](./screenshots/code3a.png)
 
+#### Cara Pengerjaan
+1. 
+#### Kendala
+1. 
+2. 
 
 
 
