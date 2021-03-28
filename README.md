@@ -1,6 +1,52 @@
 # Soal Shift 1
 [Soal](https://docs.google.com/document/d/1T3Y4o2lt5JvLTHdgzA5vRBQ0QYempbC5z-jcDAjela0/edit)
+#### Source Code 1a
 
+#### Cara Pengerjaan
+Tujuan: Mengumpulkan informasi berupa: jenis log (ERROR/INFO), pesan log, dan username pada setiap baris lognya
+1. Menggunakan regex '(ERROR|INFO) .*'
+2. Contoh informasi baris yang terambil: "ERROR Tried to add information to closed ticket (mcintosh)"
+
+#### Source Code 1b
+
+#### Cara Pengerjaan
+Tujuan: menampilkan semua pesan error yang muncul beserta jumlah kemunculannya
+1. Melakukan grep pada syslog.log
+2. Menggunakan regex dengan '(ERROR) .* '
+3. Menggunakan tambahan -o untuk mencetak hanya yang eksplisit sesuai dengan kondisi yang diminta
+4. Menggunakan sed s/"ERROR "// untuk menghilkan kata "ERROR "
+5. Diberikan kombinasi | sort | uniq -c untuk mengurutkan informasi yang diambil serta menghitung kemunculan tiap informasi yang serupa
+6. Dilakukan penyimpanan nilai jumlah kemunculan pesan error dan text error ke dalam variabel 'count' dan 'text' dengan iterasi | while read count text
+
+#### Source Code 1c
+
+#### Cara Pengerjaan
+Tujuan: menampilkan jumlah kemunculan log ERROR dan INFO untuk setiap user-nya
+1. Melakukan grep pada syslog.log
+2. Menggunakan regex dengan '.* (INFO) .* (\(.*\))'
+3. Menggunakan tambahan -o untuk mencetak hanya yang eksplisit sesuai dengan kondisi yang diminta
+4. Menggunakan sed  's/.*(\(.*\))/\1/'  untuk menghilangkan selain parenthese (referensi: get string inside parenthesis https://unix.stackexchange.com/questions/108250/print-the-string-between-two-parentheses)
+5. Diberikan kombinasi | sort | uniq -c untuk mengurutkan informasi yang diambil serta menghitung kemunculan tiap informasi yang serupa
+6. Dilakukan penyimpanan nilai jumlah kemunculan pesan info dan parenthese ke dalam variabel 'count' dan 'name' dengan iterasi | while read count name
+7. Di dalam perulangan tersebut melakukan perhitungan jumlah count tiap user dengan menyimpan nilainya ke variable errC
+8. Diberikan grep -oE ".* (ERROR) .* (\($name\))" untuk Mengambil informasi error hanya pada nama parenthese 'name' 
+9. Menggunakan sed  's/.*(\(.*\))/\1/'  untuk menghilangkan selain parenthese
+10. Dilakukan | wc -l | sed 's/^[ \t]*//'` untuk menghitung jumlah parenthese yang muncul serta menghilangkan tab di depannya
+
+
+#### Source Code 1d
+
+#### Cara Pengerjaan
+1. Mencetak Error,Count pada error_massage.csv
+2. Di dalam perulangan 1b while read count text, dilakukan echo $text,$count >> error_message.csv untuk menuliskan nilai 'count' dan 'text' di file error_massage.csv
+3. Pengurutan jumlah kemunculan sudah teratasi oleh sort sebelumnya
+
+#### Source Code 1e
+
+#### Cara Pengerjaan
+1. Menuliskan Username,INFO,ERROR pada user_statistic.csv
+2. Di dalam perulangan 1c while read count name, dilakukan echo $name,$count,$errC >> user_statistic.csv untuk menuliskan nilai 'name', 'count' dan 'errC' di file user_statistic.csv
+3. Pengurutan jumlah kemunculan sudah teratasi oleh sort sebelumnya
 
 ## Soal Nomor 2
 #### Source Code 2a
