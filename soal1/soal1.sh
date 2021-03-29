@@ -2,8 +2,8 @@
 
 # ! Correct
 echo Error,Count >> error_message.csv
-grep -oE '(ERROR) .* ' syslog.log | sed s/"ERROR "// | sort | uniq -c | while read count text
-do 
+grep -oE '(ERROR) .* ' syslog.log | sed s/"ERROR "// | sort | uniq -c | sort -nr | while read count text
+do
     echo $text,$count >> error_message.csv
 done
 # grep -> get all line start from ERROR ......, but exclude the (), -o to print only the matching part
@@ -15,11 +15,12 @@ done
 # ! Correct
 echo Username,INFO,ERROR >> user_statistic.csv
 #* get INFO with the name, then only get string inside parentheses, sort|uniq to count occurence, then iterate
-grep -oE '.* (INFO) .* (\(.*\))' syslog.log | sed  's/.*(\(.*\))/\1/' | sort | uniq -c | while read count name
-do 
+grep -oE '.* (\(.*\))' syslog.log | sed  's/.*(\(.*\))/\1/' | sort | uniq -c | while read count name
+do
     # di grep, pake "" supaya bisa masuk variable, last sed buat apus whitespace
+    errI=`grep -oE ".* (INFO) .* (\($name\))" syslog.log | sed  's/.*(\(.*\))/\1/' | wc -l | sed 's/^[ \t]*//'`
     errC=`grep -oE ".* (ERROR) .* (\($name\))" syslog.log | sed  's/.*(\(.*\))/\1/' | wc -l | sed 's/^[ \t]*//'`
-    echo $name,$count,$errC >> user_statistic.csv
+    echo $name,$errI,$errC >> user_statistic.csv
 done 
 
 # grep -> get INFO line
