@@ -17,10 +17,10 @@ echo Username,INFO,ERROR >> user_statistic.csv
 #* get INFO with the name, then only get string inside parentheses, sort|uniq to count occurence, then iterate
 grep -oE '.* (\(.*\))' syslog.log | sed  's/.*(\(.*\))/\1/' | sort | uniq -c | while read count name
 do
-    # di grep, pake "" supaya bisa masuk variable, last sed buat apus whitespace
-    errI=`grep -oE ".* (INFO) .* (\($name\))" syslog.log | sed  's/.*(\(.*\))/\1/' | wc -l | sed 's/^[ \t]*//'`
+    # di grep, pake "" supaya bisa masuk variable, last sed buat hapus whitespace, mengambil 
+    infoC=`grep -oE ".* (INFO) .* (\($name\))" syslog.log | sed  's/.*(\(.*\))/\1/' | wc -l | sed 's/^[ \t]*//'`
     errC=`grep -oE ".* (ERROR) .* (\($name\))" syslog.log | sed  's/.*(\(.*\))/\1/' | wc -l | sed 's/^[ \t]*//'`
-    echo $name,$errI,$errC >> user_statistic.csv
+    echo $name,$infoC,$errC >> user_statistic.csv
 done 
 
 # grep -> get INFO line
