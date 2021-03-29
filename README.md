@@ -169,6 +169,7 @@ Tidak ada
 - Remove word with sed https://unix.stackexchange.com/questions/311758/remove-specific-word-in-variable
 - Custom format output uniq https://stackoverflow.com/questions/8948975/how-do-you-do-custom-formatting-with-the-uniq-c-option
 - get string inside parenthesis https://unix.stackexchange.com/questions/108250/print-the-string-between-two-parentheses
+- sort count uniq https://stackoverflow.com/questions/11959867/how-to-use-uniq-cd-in-bash-scripting-and-extract-only-the-count-and-not-the-lin
 
 ## Referensi Nomor 2
 - cek cara split tab, nomor 2 https://stackoverflow.com/questions/44394034/how-to-view-syslog-in-ubuntu
