@@ -2,13 +2,14 @@
 
 # ! Correct
 echo Error,Count >> error_message.csv
-grep -oE '(ERROR) .* ' syslog.log | sed s/"ERROR "// | sort | uniq -c | sort -nr | while read count text
+grep -oE '(ERROR) .* ' syslog.log | sed s/"ERROR "// | sort  | uniq -c | sort -nr | while read count text
 do
     echo $text,$count >> error_message.csv
 done
 # grep -> get all line start from ERROR ......, but exclude the (), -o to print only the matching part
 # sed -> Remove the "ERROR "
 # sort | uniq -c -> count occurence with format `count text`
+# sort -nr , --number --reverse
 # while read count text -> to iterate
 # then print with the following format to error_message.csv
 
@@ -23,10 +24,11 @@ do
     echo $name,$infoC,$errC >> user_statistic.csv
 done 
 
-# grep -> get INFO line
+# grep -> get ALL line
 # sed -> get string inside parentheses
 # sort | uniq -c -> count occurence with format `count text`
 # iterate
+    # grep -> get INFO Line, with the same name
     # grep -> get ERROR Line, with the same name
     # sed -> get string inside parentheses
     # wc -l -> count occurence 'nama' (no need to use uniq, because name is already stored)

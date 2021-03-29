@@ -4,16 +4,10 @@ cd `pwd`/soal-shift-sisop-modul-1-A08-2021/soal3
 
 i=1
 
-# if [ ! -d "Kucing" ]
-# then
-# 	mkdir Kucing
-# fi
-# cd Kucing
-
 # * Downloads file, but if the same file name exist, then don't
 while [ $i -lt 24 ]
 do
-	wget -nc --content-disposition https://loremflickr.com/320/240/kitten -a 'Foto.log'
+	wget --content-disposition https://loremflickr.com/320/240/kitten -a 'Foto.log'
 	i=$((i + 1))
 done
 
@@ -24,6 +18,9 @@ do
 	mv $file Koleksi_$i.jpg
 	i=$((i + 1))
 done
+
+# * remove duplicates
+rm *.jpg.* 
 
 date="$(date +%d-%m-%Y)"
 

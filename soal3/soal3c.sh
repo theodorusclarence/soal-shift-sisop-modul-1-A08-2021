@@ -17,7 +17,7 @@ fi
 # * Downloads file, but if the same file name exist, then don't
 while [ $i -lt 24 ]
 do
-    wget -nc --content-disposition https://loremflickr.com/320/240/$eng -a 'Foto.log'
+    wget --content-disposition https://loremflickr.com/320/240/$eng -a 'Foto.log'
 	i=$((i + 1))
 done
 
@@ -28,6 +28,9 @@ do
 	mv $file Koleksi_$i.jpg
 	i=$((i + 1))
 done
+
+# * remove duplicates
+rm *.jpg.* 
 
 dirname=$ind"_$(date +%d-%m-%Y)"
 
