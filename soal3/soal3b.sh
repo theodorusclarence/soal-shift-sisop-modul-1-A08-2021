@@ -11,6 +11,9 @@ do
 	i=$((i + 1))
 done
 
+# * remove duplicates
+rm *.jpg.* 
+
 # * Rename .jpg files inside to incrementing name
 i=1
 find . -name "*.jpg" ! -name "Koleksi*.jpg" -print0 | while read -d $'\0' file
@@ -19,8 +22,6 @@ do
 	i=$((i + 1))
 done
 
-# * remove duplicates
-rm *.jpg.* 
 
 date="$(date +%d-%m-%Y)"
 
