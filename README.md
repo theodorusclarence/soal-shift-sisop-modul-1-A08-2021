@@ -121,23 +121,24 @@ Tidak ada
 ![2a](./screenshots/code3a.png)
 
 #### Cara Pengerjaan
-1. Pada soal ini menggunakan `wget -nc` untuk dwonload file dengan mencegah terjadinya file yang duplicate sehingga mempermudah disaat pemberian label
-2. Kemudian log dari download tersebut di store ke `Foto.log`
-3. Kami menggunakan `-name "*.jpg" ` pada saat loop untuk pemberian nama bertujuan untuk menemukan file foto yang sudah didownload 
-4. Dalam pelabelan Foto kucing dilakukan dengan urut hingga foto terakhir
+1. Pada soal ini menggunakan `wget --content disposition` untuk menyimpan gambar yang sudah di download dengan label asli dari website sehingga mempermudah dalam pencarian duplikasi.
+2. kami menggunakan command `rm *.jpg.*` untuk menghapus foto yang duplikat dengan tetap menyisakan foto awal.  
+2. Kemudian log dari download tersebut di store ke `Foto.log`.
+3. Kami menggunakan `-name "*.jpg" ` pada saat loop untuk pemberian nama bertujuan untuk menemukan file foto yang sudah didownload .
+4. Dalam pelabelan Foto kucing dilakukan dengan urut hingga foto terakhir.
 #### Kendala
-1. Di awal kami kesulitan menemukan metode pengambilan foto tanpa ada duplkasi
+1. Di awal kami kesulitan menemukan metode pengambilan foto tanpa ada duplkasi.
 
 #### Source Code 3b
 ![2a](./screenshots/code3b.png)
 ![2a](./screenshots/crontab3b.png)
 
 #### Cara Pengerjaan
-1. Pada soal ini dengan prinsip yang sama dengan soal sebelumnya tetapi dengan memindahkan file yang didownload ke dalam folder dengan label tanggal saat dijalankan dengan format berikut`"$(date +%d-%m-%Y)"` dan juga memberikan jadwal menggunakan crontab
-2. untuk memindahkan file yang sudah didownload kedalam folder kami menggunakan `find . -name "*.jpg" ! -name "Koleksi*.jpg"` untuk mencari file yang berekstensi .jpg tapi tidak dengan yang sudah ada format Koleksi sehingga file yang didownload sebelumnya tidak terpindahkan ke folder baru
+1. Pada soal ini dengan prinsip yang sama dengan soal sebelumnya tetapi dengan memindahkan file yang didownload ke dalam folder dengan label tanggal saat dijalankan dengan format berikut`"$(date +%d-%m-%Y)"` dan juga memberikan jadwal menggunakan crontab.
+2. untuk memindahkan file yang sudah didownload kedalam folder kami menggunakan `find . -name "*.jpg" ! -name "Koleksi*.jpg"` untuk mencari file yang berekstensi .jpg tapi tidak dengan yang sudah ada format Koleksi sehingga file yang didownload sebelumnya tidak terpindahkan ke folder baru.
 
 #### Kendala
-1. Pada saat pemindahan foto ke folder baru, foto di folder lama ikut dalam pemindahan karena metode pencarian juga sampai subfolder sehingga dibutuhkan syarat baru
+1. Pada saat pemindahan foto ke folder baru, foto di folder lama ikut dalam pemindahan karena metode pencarian juga sampai subfolder sehingga dibutuhkan syarat baru.
 
 #### Source Code 3c
 ![2a](./screenshots/code3c.png)
@@ -145,7 +146,7 @@ Tidak ada
 #### Cara Pengerjaan
 1. Pada soal ini kami menggunakan `$kucCount -ge $kelCount` untuk menjadi acuan dilakukan download di web url yang berbeda sehingga apabila sebelumnya sudah ada folder berisi kucing maka folder selanjutnya akan download di url kelinci. 
 #### Kendala
-1. Tidak ada kendala
+1. Tidak ada kendala.
 
 #### Source Code 3d
 ![2a](./screenshots/code3d.png)
