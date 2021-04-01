@@ -1,46 +1,45 @@
 # Soal Shift 1
 [Soal](https://docs.google.com/document/d/1T3Y4o2lt5JvLTHdgzA5vRBQ0QYempbC5z-jcDAjela0/edit)
-### Source Code 1a
-
+### Soal 1a
 #### Cara Pengerjaan
 Tujuan: Mengumpulkan informasi berupa: jenis log (`ERROR`/`INFO`), pesan log, dan username pada setiap baris lognya
 1. Menggunakan regex `'(ERROR|INFO) .*'`
 2. Contoh informasi baris yang terambil: "ERROR Tried to add information to closed ticket (mcintosh)"
 
-### Source Code 1b
+### Soal 1b (Perintah 1)
+
+#### Source Code 1b dan 1d (Perintah 1)
+![1d](./screenshots/1d.png)
 
 #### Cara Pengerjaan
 Tujuan: menampilkan semua pesan error yang muncul beserta jumlah kemunculannya
-1. Melakukan `grep` pada `syslog.log`
-2. Menggunakan regex dengan `'(ERROR) .* '`
-3. Menggunakan tambahan `-o` untuk mencetak hanya yang eksplisit sesuai dengan kondisi yang diminta
-4. Menggunakan `sed s/"ERROR "//` untuk menghilkan kata "ERROR "
-5. Diberikan kombinasi `| sort | uniq -c` untuk mengurutkan informasi yang diambil serta menghitung kemunculan tiap informasi yang serupa
+1. Melakukan `grep` pada `syslog.log` untuk mengambil isi log
+2. Menggunakan regex dengan `'(ERROR) .* '` untuk mengambil baris yang mengandung tulisan `(ERROR)`
+3. Menggunakan tambahan `-oE` untuk mencetak hanya yang eksplisit sesuai dengan kondisi yang diminta (bukan seluruh isi baris)
+4. Menggunakan `sed s/"ERROR "//` untuk menggantikan kata "ERROR " dengan nilai kosong
+5. Diberikan kombinasi `| sort | uniq -c | sort -nr` berturut-turut untuk mengurutkan data berdasarkan kalimat, mengelompokkan serta menghitung jumlah kemunculkan berdasarkan kalimat yang sesuai, dan mengurutkan jumlah kemunculan secara descending atau reverse
 6. Dilakukan penyimpanan nilai jumlah kemunculan pesan error dan text error ke dalam variabel 'count' dan 'text' dengan iterasi `| while read count text`
 
-### Source Code 1c
-
+### Soal 1c (Perintah 2)
+#### Source Code 1c dan 1e (Perintah 2)
+![1e](./screenshots/1e.png)
 #### Cara Pengerjaan
 Tujuan: menampilkan jumlah kemunculan log `ERROR` dan `INFO` untuk setiap usernya
-1. Melakukan grep pada `syslog.log`
-2. Menggunakan regex dengan `'.* (INFO) .* (\(.*\))'`
-3. Menggunakan tambahan `-o` untuk mencetak hanya yang eksplisit sesuai dengan kondisi yang diminta
-4. Menggunakan `sed  's/.*(\(.*\))/\1/'`  untuk menghilangkan selain parenthese (referensi: get string inside parenthesis https://unix.stackexchange.com/questions/108250/print-the-string-between-two-parentheses)
+1. Melakukan grep pada `syslog.log` untuk mengambil isi log
+2. Menggunakan regex dengan `'.* (\(.*\))'` Untuk mengambil seluruh baris
+3. Menggunakan tambahan `-oE` untuk mencetak hanya yang eksplisit sesuai dengan kondisi yang diminta (bukan seluruh isi baris)
+4. Menggunakan `sed  's/.*(\(.*\))/\1/'`  untuk mengganti seluruh isi dengan nilai yang ada diantara bracket `()`. Caranya dengan menyimpan nilai yang ada di antara `(` dan `)` dan mengakses yang disimpan dengan `\1` (referensi: get string inside parenthesis https://unix.stackexchange.com/questions/108250/print-the-string-between-two-parentheses)
 5. Diberikan kombinasi `| sort | uniq -c` untuk mengurutkan informasi yang diambil serta menghitung kemunculan tiap informasi yang serupa
 6. Dilakukan penyimpanan nilai jumlah kemunculan pesan info dan parenthese ke dalam variabel 'count' dan 'name' dengan iterasi `| while read count name`
-7. Di dalam perulangan tersebut melakukan perhitungan jumlah count tiap user dengan menyimpan nilainya ke variable `errC`
-8. Diberikan `grep -oE ".* (ERROR) .* (\($name\))"` untuk Mengambil informasi error hanya pada nama parenthese 'name' 
-9. Menggunakan `sed  's/.*(\(.*\))/\1/'`  untuk menghilangkan selain parenthese
+7. Di dalam perulangan tersebut dilakukan perhitungna jumlah kemunculan status `INFO` dan `ERROR` pada user/parenthese `name` terkait dengan berturut-turut disimpan dalam variabel `infoC` dan `errC`
+8. Diberikan `grep -oE ".* (INFO) .* (\($name\))"` pada `infoC` dan `grep -oE ".* (ERROR) .* (\($name\))"` pada `errC` untuk mengambil baris yang mengandung `(INFO)` dan `(ERROR)`
+9. Menggunakan `sed  's/.*(\(.*\))/\1/'`  untuk menghilangkan selain parenthese seperti langkah no. 4
 10. Dilakukan `| wc -l | sed 's/^[ \t]*//'` untuk menghitung jumlah parenthese yang muncul serta menghilangkan tab di depannya
-
-### Source Code 1d
 
 #### Cara Pengerjaan
 1. Mencetak Error,Count pada error_massage.csv
 2. Di dalam perulangan 1b while read count text, dilakukan `echo $text,$count >> error_message.csv` untuk menuliskan nilai 'count' dan 'text' di file error_massage.csv
 3. Pengurutan jumlah kemunculan sudah teratasi oleh `sort` sebelumnya
-
-#### Source Code 1e
 
 #### Cara Pengerjaan
 1. Menuliskan Username,INFO,ERROR pada user_statistic.csv
@@ -50,7 +49,9 @@ Tujuan: menampilkan jumlah kemunculan log `ERROR` dan `INFO` untuk setiap userny
 
 ### Kendala
 - Bingung mencari referensi untuk pengelempokan sebelum menemukan uniq -c
+- Pada nomor 1b, salah melakukan sorting sehingga jawaban tidak sesuai yang diinginkan. Hal ini diatasi dengan cara menambahkan persyaratan `sort -nr`
 - Pada nomor 1b, bingung untuk menggabungkan pengelompokan 2 parameter berdasarkan `ERROR` dan `INFO`
+- Pada nomor 1c, ada beberapa akun yang belum muncul informasinya karena pada sebelumnya dilakukan pendekatan perhitungan dari data status `INFO` lalu baru data status `ERROR`. Hal ini diatasi dengan mengubah pendekatan dari list data user lalu langsugn masuk k kedua status
 - Bingung mencari referensi untuk mengambil pesan pada user tertentu
 
 ---
