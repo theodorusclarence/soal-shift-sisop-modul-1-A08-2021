@@ -51,7 +51,7 @@ Tujuan: menampilkan jumlah kemunculan log `ERROR` dan `INFO` untuk setiap userny
 - Bingung mencari referensi untuk pengelempokan sebelum menemukan uniq -c
 - Pada nomor 1b, salah melakukan sorting sehingga jawaban tidak sesuai yang diinginkan. Hal ini diatasi dengan cara menambahkan persyaratan `sort -nr`
 - Pada nomor 1b, bingung untuk menggabungkan pengelompokan 2 parameter berdasarkan `ERROR` dan `INFO`
-- Pada nomor 1c, ada beberapa akun yang belum muncul informasinya karena pada sebelumnya dilakukan pendekatan perhitungan dari data status `INFO` lalu baru data status `ERROR`. Hal ini diatasi dengan mengubah pendekatan dari list data user lalu langsugn masuk k kedua status
+- Pada nomor 1c, ada beberapa akun yang belum muncul informasinya karena pada sebelumnya dilakukan pendekatan perhitungan dari data status `INFO` lalu baru data status `ERROR`. Hal ini teratasi dengan mengubah pendekatan dari list data user lalu langsugn masuk k kedua status
 - Bingung mencari referensi untuk mengambil pesan pada user tertentu
 
 ---
