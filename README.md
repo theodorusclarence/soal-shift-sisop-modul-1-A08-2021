@@ -143,6 +143,7 @@ Tidak ada
 2. Untuk merename file yang sudah didownload kami menggunakan command `find . -name "*.jpg" ! -name "Koleksi*.jpg"` untuk mencari file yang berekstensi .jpg tapi tidak memilih yang sudah ada format Koleksi* sehingga file yang didownload sebelumnya tidak ter-rename.
 3. Kemudian, untuk memindahkan file ke folder yang sudah diberi nama sesuai aturan, kami menggunakan `cp *.jpg $dirname` untuk menghindari memindahkan file jpg yang sudah berada di dalam folder, karena pada command `cp` kami tidak menggunakan `-r`.
 4. Terakhir, kami meremove foto yang ada di base folder, dan memindahkan Foto.log
+5. Pada crontab `0 20 1/7,2/4 * *` menjadwalkan eksekusi program pada waktu `0 20` yaitu jam 20.00 `1/7` yaitu setiap tanggal 1,8,...,29 dan `2/4` dan setiap tanggal 2,6,10,...,30, sehingga pada setiap jam 20.00 pada tangal yang sudah di jadwalkan program akan tereksekusi
 
 #### Kendala
 1. Pada saat pemindahan foto ke folder baru, foto di folder lama ikut dalam pemindahan karena metode pencarian juga sampai subfolder sehingga dibutuhkan syarat baru.
@@ -174,7 +175,7 @@ Tidak ada
 #### Source Code 3e
 ![2a](./screenshots/crontab3e.png)
 #### Cara Pengerjaan
-1. Melakukan sesuai jadwal dan dengan memberikan branch pada saat pukul 7 dan 18 untuk melakukan zip atau melakukan unzip.
+1. Kami menggunakan crontab `0 7,18 * * 1-5` yang mengeksekusi program pada jam `0 7,18` jam 07.00 dan 18.00 dan `1-5` yaitu untuk hanya menjalankan jadwalnya pada hari senin-jumat.
 
 
 ## Referensi Nomor 1
